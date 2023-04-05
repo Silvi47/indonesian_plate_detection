@@ -2,14 +2,10 @@ import argparse
 from ultralytics import YOLO
 import cv2
 import pandas as pd
-import os
 from ultralytics.yolo.utils.files import increment_path
 from datetime import datetime
 from PIL import Image
 from pathlib import Path
-# from deploy import *
-# from skimage import io
-# import plotly.express as px
 
 now = datetime.now()
 
@@ -33,14 +29,9 @@ for result in results:
     bbox_idx = result.boxes.xyxy.tolist()
     img = result.orig_img
     print("bbox: ", bbox_idx)
-    # filename = 'gambar%s.png' % i
-    # cv2.imwrite(os.path.join("./img_results/",filename),crop)
-    # print("filename: ", filename)
 
     for bbox in bbox_idx:
         x3, y3, x4, y4 = bbox
         cropped_img = img[int(round(y3)):int(round(y4)), int(round(x3)):int(round(x4))]
-        print("xyxy: ",int(round(x3)),int(round(y3)), int(round(x4)),int(round(y4)))
-        # filename = 'gambar%s%s.png' % i
-        # print("filename: ", filename)
+        # Save cropped image
         # imgwrite(cropped_image,"img.jpg")
